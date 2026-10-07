@@ -1,0 +1,9 @@
+# The golden checksum depends on exact bytes, so normalise line endings
+# everywhere, including on Windows checkouts.
+* text=auto eol=lf
+*.json text eol=lf
+*.sha256 text eol=lf
+*.j2 text eol=lf
+*.css text eol=lf
+*.svg text eol=lf
+*.png binary

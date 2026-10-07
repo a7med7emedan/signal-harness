@@ -1,0 +1,29 @@
+{
+  "messages": [
+    {
+      "status": "ok",
+      "count": 2,
+      "total": 33
+    }
+  ],
+  "collection": [
+    {
+      "doi": "10.64898/2026.10.04.756519",
+      "title": "Regulation informed sparse model discovery",
+      "authors": "Lucenti, N. J.; Bani-Yaghoub, M.",
+      "date": "2026-10-06",
+      "version": "1",
+      "category": "systems biology",
+      "abstract": "A conditioning fix for gene regulatory terms."
+    },
+    {
+      "doi": "10.64898/2026.09.30.755663",
+      "title": "Zero shot super resolution for spatial data",
+      "authors": "Ye, J.; Cui, Q.",
+      "date": "2026-10-06",
+      "version": "2",
+      "category": "bioinformatics",
+      "abstract": "A revision, posted inside the window."
+    }
+  ]
+}

@@ -1,0 +1,288 @@
+{
+  "number": "D-003",
+  "date": "2026-10-07",
+  "edition": "Daily Dispatch",
+  "dateline": "Luxembourg",
+  "reading_words_per_minute": 200,
+  "furniture": {
+    "path": "issues/2026/2026-10-07.html"
+  },
+  "windows": {
+    "clinic": 3,
+    "bio": 3,
+    "machine": 7,
+    "policy": 10,
+    "record": 10,
+    "geek": 10,
+    "frontier": 30
+  },
+  "entries": [
+    {
+      "id": "s00",
+      "desk": "clinic",
+      "kind": "lead",
+      "source": "npj Digital Medicine",
+      "url": "https://www.nature.com/articles/s41746-026-03356-0",
+      "date": "2026-10-05",
+      "signal": "HARD",
+      "mechanism": {
+        "pieces": "The device is software that reads a scanned slide. It returns a clinical call, such as tumour present or a cell count. Selling it needs a European mark or a United States authorisation.",
+        "normally_wrong": "The regulator sees the performance data. The pathologist who must trust the output usually does not. Reviews start from published studies, so a device with no study is invisible to them.",
+        "what_they_did": "They changed the unit of analysis. Instead of reviewing papers, they walked the register of authorised products and asked whether any number exists in public.",
+        "numbers_mean": "The 39 per cent counts devices where a searcher could find evidence in six named sources. It does not show the rest perform badly. Fifteen metrics means two devices usually cannot be ranked.",
+        "anchor": "This is a provenance problem. A validation report published in a fixed, comparable format would already be ahead of most of this market."
+      },
+      "glossary": [
+        {
+          "term": "Digital pathology",
+          "definition": "is diagnosis from scanned images of tissue slides."
+        },
+        {
+          "term": "A CE mark",
+          "definition": "is the label that lets a product be sold in the European Union."
+        },
+        {
+          "term": "A performance metric",
+          "definition": "is a number describing how accurate a test is."
+        }
+      ],
+      "headline": "Most approved pathology AI tools have no public evidence of how well they work",
+      "body": [
+        "A team in Helsinki started from the register of authorised devices rather than from the literature. They found 77 AI diagnostic products from 29 manufacturers.",
+        "Device specific performance evidence was found in public for 30 of them. For the other 47, which is 61 per cent, nothing could be found at all.",
+        "All eight products authorised on both sides of the Atlantic had evidence. Only 22 of 69 European only products did. Fifteen different metrics were used across the publications that exist."
+      ],
+      "catch": "A search based absence is a floor, not a fact. Evidence could sit in a regulatory summary and be missed. Devices were counted, not installations.",
+      "simple": "Hospitals can buy AI programs that read tissue slides. The programs are legally approved. But for most of them, a doctor cannot find any published test of their accuracy.",
+      "why": "Ask a vendor for device specific published evidence before anything else. Six times in ten, there will be none to show you."
+    },
+    {
+      "id": "s01",
+      "desk": "policy",
+      "kind": "brief",
+      "source": "European Medicines Agency",
+      "url": "https://www.ema.europa.eu/en/events/good-manufacturing-practice-multistakeholder-workshop-expert-contributions-artificial-intelligence-guidance-development-annex-22",
+      "date": "2026-10-02",
+      "signal": "HARD",
+      "glossary": [
+        {
+          "term": "Good Manufacturing Practice",
+          "definition": "is the set of European rules for how medicines are made."
+        },
+        {
+          "term": "A probabilistic model",
+          "definition": "gives outputs that can differ between runs."
+        }
+      ],
+      "headline": "Europe's medicines regulator may allow generative models in critical manufacturing",
+      "body": [
+        "The 2025 draft said adaptive and probabilistic models should not be used in critical manufacturing. A workshop report published on 2 October points the other way.",
+        "Acceptability would turn on intended use, impact, uncertainty and control strategy. Mandatory human review would give way to oversight proportionate to risk."
+      ],
+      "catch": "This is a workshop report, not adopted text. It carries no participant count and no timeline, so no date can be planned around."
+    },
+    {
+      "id": "s02",
+      "desk": "clinic",
+      "kind": "brief",
+      "source": "medRxiv preprint",
+      "url": "https://www.medrxiv.org/content/10.64898/2026.10.03.26364646v1",
+      "date": "2026-10-06",
+      "submitted": "2026-10-03",
+      "signal": "EARLY",
+      "glossary": [
+        {
+          "term": "A label",
+          "definition": "is the answer a model is trained and scored against."
+        },
+        {
+          "term": "A fairness audit",
+          "definition": "measures whether accuracy differs between groups of patients."
+        }
+      ],
+      "headline": "Scraped labels made chest X ray models look fairer than they are",
+      "body": [
+        "Automatically extracted labels missed 54 to 59 per cent of confirmed findings, and every fracture, in 4,376 expert checked images.",
+        "The misses were concentrated where models score lowest. Measured gaps between patient groups looked smaller under the scraped labels in 16 of 24 comparisons."
+      ],
+      "catch": "One public dataset, and an expert subset that was not built to be demographically balanced. The full text could not be read at source."
+    },
+    {
+      "id": "s03",
+      "desk": "bio",
+      "kind": "story",
+      "source": "bioRxiv preprint",
+      "url": "https://www.biorxiv.org/content/10.64898/2026.10.04.756519v1",
+      "date": "2026-10-06",
+      "submitted": "2026-10-04",
+      "signal": "EARLY",
+      "mechanism": {
+        "pieces": "The method takes a measured time course and estimates how fast it changes. It then asks which few entries from a menu of candidate formulas reproduce that rate.",
+        "normally_wrong": "Across the narrow range an oscillation visits, the curve for a gene switching on resembles the simple polynomial entries beside it. The fit cannot separate them.",
+        "what_they_did": "Known regulatory entries are removed from the menu. Their coefficients are pinned by a separate requirement, that the average rate of change over a bounded path is zero.",
+        "numbers_mean": "The 3 to 45 times is a gain in numerical stability, not in accuracy. That is the right quantity, because instability is the disease being treated.",
+        "anchor": "You supply the architecture and the method estimates its strengths. That is the hand off from a curated network to a quantitative one."
+      },
+      "glossary": [
+        {
+          "term": "Sparse regression",
+          "definition": "fits with a penalty that pushes most coefficients to zero."
+        },
+        {
+          "term": "A condition number",
+          "definition": "says how far small input errors are amplified. Lower is steadier."
+        },
+        {
+          "term": "A preprint",
+          "definition": "is a paper posted before peer review."
+        }
+      ],
+      "headline": "A fix for why equation discovery cannot see gene regulation",
+      "body": [
+        "The method improves the numerical stability of the fit by 3 to 45 times. On measured oscillation data it gave the lowest trajectory error of four methods.",
+        "On two synthetic systems it recovered the correct sparse structure. It still found every active term at 15 per cent noise, where two standard methods failed."
+      ],
+      "catch": "You must already know which regulatory terms exist, so this puts numbers on a hypothesised architecture. One real dataset and two textbook systems.",
+      "simple": "Scientists guess the equations behind a measured biological rhythm. For genes the guess is unstable, because one curve looks like another. This method pins part of it in advance.",
+      "why": "If you hold a curated map and a time course, this puts numbers on the edges without the fit collapsing."
+    },
+    {
+      "id": "s04",
+      "desk": "bio",
+      "kind": "brief",
+      "source": "Nature Methods",
+      "url": "https://www.nature.com/articles/s41592-026-03237-0",
+      "date": "2026-10-05",
+      "signal": "SOLID",
+      "glossary": [
+        {
+          "term": "A clump",
+          "definition": "is a small group of cells still joined after gentle separation."
+        },
+        {
+          "term": "A barcode",
+          "definition": "is a short DNA tag marking where a molecule came from."
+        }
+      ],
+      "headline": "A method keeps cells in small clumps, so sequencing can say which sat together",
+      "body": [
+        "Tissue is broken only into clumps of under about 20 cells, and every cell in a clump is given one shared tag before full separation.",
+        "In a mixing control, 2 of 682 clumps held both species. In gut tissue the method read 6.5 times as many genes as one established spatial platform."
+      ],
+      "catch": "The authors say this captures a range from true contact to short range neighbourhood, not certified contact. Five tumour patients cannot carry the subtype claims."
+    },
+    {
+      "id": "s05",
+      "desk": "machine",
+      "kind": "story",
+      "source": "arXiv preprint",
+      "url": "https://arxiv.org/abs/2610.05622",
+      "date": "2026-10-04",
+      "signal": "EARLY",
+      "mechanism": {
+        "pieces": "An agent calls tools that change outside systems. A fault injection is a deliberate failure placed mid run. Idempotency means repeating an operation has no further effect.",
+        "normally_wrong": "Most benchmarks score only whether the task finished. That mixes planning skill with recovery skill, and hides the half completed action.",
+        "what_they_did": "They ran matched pairs with the same random seed, once clean and once with a fault. They then tracked the state of the environment, not the agent's account.",
+        "numbers_mean": "The first number is what a vendor quotes. The second is what happens when something goes wrong, which in production is routine. The duplicate rate carries a direct cost.",
+        "anchor": "Test the failure path, not the happy path. Then make every action safe to repeat, because the agent will repeat it."
+      },
+      "glossary": [
+        {
+          "term": "An agent",
+          "definition": "is a language model that acts over several steps using tools."
+        },
+        {
+          "term": "Idempotency",
+          "definition": "means repeating an operation does not change the result again."
+        },
+        {
+          "term": "A seed",
+          "definition": "fixes the random choices so two runs can be compared fairly."
+        }
+      ],
+      "headline": "Agents finish 84 per cent of tasks and recover from 47 per cent of failures",
+      "body": [
+        "A benchmark pairs 36 business workflows with 36 fault scenarios. Agents completed 83.54 per cent of clean tasks and recovered from 46.72 per cent of injected faults.",
+        "Retrying produced duplicate real world effects in 53.33 per cent of trials. After an action was committed, only verification plus a guard against repeats helped."
+      ],
+      "catch": "Only 36 scenarios, all simulated, and the abstract does not name the models tested.",
+      "simple": "Assistants that act on real systems were tested twice. Normally they finished most jobs. With a deliberate problem in the middle, they fixed fewer than half.",
+      "why": "Report the share of tasks that pass every run, and how many failures were silent. Those two numbers decide whether a human must check the work."
+    },
+    {
+      "id": "s06",
+      "desk": "frontier",
+      "kind": "brief",
+      "source": "arXiv preprint",
+      "url": "https://www.arxiv.org/abs/2609.21115",
+      "date": "2026-09-17",
+      "signal": "WEAK",
+      "glossary": [
+        {
+          "term": "Attention",
+          "definition": "is the step that weighs which inputs matter most."
+        },
+        {
+          "term": "A simulator",
+          "definition": "is ordinary software imitating a quantum computer."
+        }
+      ],
+      "headline": "A quantum derived attention layer moved accuracy between genes rather than raising it",
+      "body": [
+        "Across 29 cancer collections, more genes improved than worsened in 16 of them. On an independent collection about 2,000 genes improved and about 6,200 got worse.",
+        "Training ran on an ordinary computer simulating the circuit. Real hardware was used only to produce the matrices separately."
+      ],
+      "catch": "The model never ran on quantum hardware. Gains came in small collections while the independent test went backwards, and the obvious classical control is not reported."
+    },
+    {
+      "id": "s07",
+      "desk": "record",
+      "kind": "brief",
+      "source": "Scientific Data",
+      "url": "https://www.nature.com/articles/s41597-026-07983-w",
+      "date": "2026-10-06",
+      "signal": "SOLID",
+      "glossary": [
+        {
+          "term": "A migrant stock",
+          "definition": "is how many people live outside their birth country at one time."
+        },
+        {
+          "term": "A data descriptor",
+          "definition": "is a paper describing a dataset rather than testing a hypothesis."
+        }
+      ],
+      "headline": "A new open dataset estimates migration between every pair of countries since 1960",
+      "body": [
+        "The dataset gives yearly flows between all countries from 1960 to 2024, split by sex. It comes from a migration organisation's data institute in Berlin.",
+        "Two stock series are reconciled, births and deaths are subtracted to get net flows, and a trained network splits net into gross."
+      ],
+      "catch": "These are modelled estimates, not counts. Sixty five years of history rest partly on a network trained on four recent years, and the authors say so."
+    },
+    {
+      "id": "s08",
+      "desk": "geek",
+      "kind": "brief",
+      "source": "The Register",
+      "url": "https://www.theregister.com/security/2026/09/30/spectre-bug-is-back-this-time-to-haunt-jit-engines/5299937",
+      "date": "2026-09-30",
+      "signal": "SOLID",
+      "glossary": [
+        {
+          "term": "Speculative execution",
+          "definition": "is a processor running ahead on a guess, then undoing it if wrong."
+        },
+        {
+          "term": "A side channel",
+          "definition": "leaks information through timing or power rather than through output."
+        }
+      ],
+      "headline": "A speculative execution attack returns through just in time compilers",
+      "body": [
+        "The attack leaks about 5.7 kilobytes a second on one processor family. Two affected projects shipped mitigations, and a browser maker is relying on process separation.",
+        "When a compiler rewrites code in place, the processor keeps stale predictions about where branches go. Freed code can then run speculatively and leak through timing."
+      ],
+      "catch": "It needs the attacker to run code on the machine already. The reported rates cover one chip vendor."
+    }
+  ]
+}

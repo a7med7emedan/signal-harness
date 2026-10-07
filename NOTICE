@@ -1,0 +1,8 @@
+signal-harness
+Copyright 2026 Ahmed Hemedan
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The harness ships no editorial content. The example issue under
+src/signal_harness/examples summarises publicly available sources, each linked
+from its entry; the rights in those sources remain with their owners.

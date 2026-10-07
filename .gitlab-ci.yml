@@ -1,0 +1,89 @@
+stages:
+  - lint
+  - test
+  - reproduce
+  - image
+
+default:
+  interruptible: true
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+  LC_ALL: C.UTF-8
+  TZ: UTC
+
+.python:
+  image: python:3.12-slim-bookworm
+  cache:
+    key: pip-$CI_JOB_IMAGE
+    paths: [.cache/pip]
+  before_script:
+    - pip install -r requirements.lock
+    - pip install --no-deps -e .
+
+lint:
+  extends: .python
+  stage: lint
+  script:
+    - ruff check
+    - ruff format --check
+
+test:
+  extends: .python
+  stage: test
+  image: python:${PYTHON_VERSION}-slim-bookworm
+  parallel:
+    matrix:
+      - PYTHON_VERSION: ["3.10", "3.11", "3.12", "3.13"]
+  script:
+    - pytest -q --cov --cov-report=term --cov-report=xml --junitxml=report.xml
+  coverage: '/^TOTAL.*\s+(\d+(?:\.\d+)?)%/'
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+
+reproduce:
+  extends: .python
+  stage: reproduce
+  script:
+    - signal-harness demo -o build/issue.sample.html
+    - cd build && sha256sum -c ../src/signal_harness/examples/issue.sample.sha256
+  artifacts:
+    paths: [build/issue.sample.html]
+    expire_in: 1 week
+
+image:
+  stage: image
+  image: docker:27
+  services:
+    - docker:27-dind
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  script:
+    - docker build -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA" .
+    - docker run --rm "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA" demo -o /tmp/demo.html
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_TAG
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+publish:
+  stage: image
+  image: docker:27
+  services:
+    - docker:27-dind
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  needs: [image]
+  script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+    - docker build -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG" -t "$CI_REGISTRY_IMAGE:latest" .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG"
+    - docker push "$CI_REGISTRY_IMAGE:latest"
+  rules:
+    - if: $CI_COMMIT_TAG

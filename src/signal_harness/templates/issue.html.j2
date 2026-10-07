@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ masthead }}: Issue {{ issue.number }}</title>
+<style>
+{{ css }}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-inner">
+    <h1 class="masthead">{{ masthead }}</h1>
+    <p class="tagline">{{ tagline }}</p>
+    <div class="cover-rule"></div>
+    <div class="dateline">
+      <span class="issue">Issue {{ issue.number }}</span>
+      <span>{{ issue.dateline }}</span>
+      <span>{{ long_date }}</span>
+      <span>{{ issue.edition }}</span>
+      <span>{{ issue.entries | length }} entries</span>
+      <span>{{ issue.reading_minutes() }} min read</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section class="windows">
+  <b>Windows by desk.</b> Each desk prints only items from its own window. A window of ten days
+  means nothing older than ten days before the issue date.<br>
+  {% for desk in desks -%}
+  <span class="w"><b>{{ desk_titles[desk] }}</b> {{ issue.windows[desk] }} days</span>
+  {%- endfor %}
+</section>
+
+<section class="skim">
+  <h3>In 60 seconds</h3>
+  <ol>
+    {% for entry in issue.entries %}
+    <li><a href="#{{ entry.id }}"><span class="tag">{{ desk_tags[entry.desk] }}</span>{{ entry.headline }}</a></li>
+    {% endfor %}
+  </ol>
+</section>
+
+{% macro byline(entry) %}<p class="byline"><span>{{ desk_titles[entry.desk] }}</span><span>&middot;</span><span>{{ entry.source }}</span><span>&middot;</span><span>{{ entry.date | pretty_date }}{% if entry.submitted %}, submitted {{ entry.submitted | pretty_date }}{% endif %}</span><span>&middot;</span><span class="meter m-{{ entry.signal | lower }}">{{ meters[entry.signal] }} {{ entry.signal }}</span><a class="src" href="{{ entry.url }}">[source]</a></p>{% endmacro %}
+
+{% macro boxes(entry) %}
+  {%- if entry.mechanism %}
+  <p class="how"><span class="hh">How it works</span>
+    <span class="s"><b>The pieces.</b> {{ entry.mechanism.pieces }}</span>
+    <span class="s"><b>What normally goes wrong.</b> {{ entry.mechanism.normally_wrong }}</span>
+    <span class="s"><b>What they actually did.</b> {{ entry.mechanism.what_they_did }}</span>
+    <span class="s"><b>What the numbers mean.</b> {{ entry.mechanism.numbers_mean }}</span>
+    <span class="s"><b>Anchor.</b> {{ entry.mechanism.anchor }}</span>
+  </p>
+  {%- endif %}
+  {%- if entry.simple %}
+  <p class="simple"><b>In simple words.</b> {{ entry.simple }}</p>
+  {%- endif %}
+  <p class="gloss"><b>Glossary.</b>
+    {%- for item in entry.glossary %}
+    <span class="t"><b>{{ item.term }}</b> {{ item.definition }}</span>
+    {%- endfor %}
+  </p>
+  <p class="catch"><b>The catch.</b> {{ entry.catch }}</p>
+  {%- if entry.why %}
+  <p class="why">{{ entry.why }}</p>
+  {%- endif %}
+{% endmacro %}
+
+{% set lead = issue.entries[0] %}
+<article id="{{ lead.id }}" class="lead s-{{ lead.desk }}">
+  <h1>{{ lead.headline }}</h1>
+  {{ byline(lead) }}
+  {% for para in lead.body %}<p>{{ para }}</p>
+  {% endfor %}
+  {{ boxes(lead) }}
+</article>
+
+{% for desk in desks %}
+{% set items = issue.by_desk(desk) %}
+<div class="band b-{{ desk }}">{{ desk_titles[desk] }} &middot; {{ items | length }} {{ 'entry' if items|length == 1 else 'entries' }}{% if desk == lead.desk %}, one is the lead{% endif %}</div>
+<p class="deskwin">{{ window_lines[desk] }}</p>
+<div class="cols">
+{% for column in items | rejectattr('id', 'equalto', lead.id) | list | split_columns %}
+  <div class="col">
+  {% for entry in column %}
+  <article id="{{ entry.id }}" class="{{ 'story' if entry.is_full else 'brief' }} s-{{ entry.desk }}">
+    {% if not entry.is_full %}<span class="kicker">In brief{% if entry.note %} &middot; {{ entry.note }}{% endif %}</span>{% endif %}
+    {% if entry.is_full %}<h2>{{ entry.headline }}</h2>{% else %}<h4>{{ entry.headline }}</h4>{% endif %}
+    {{ byline(entry) }}
+    {% for para in entry.body %}<p>{{ para }}</p>
+    {% endfor %}
+    {{ boxes(entry) }}
+  </article>
+  {% endfor %}
+  </div>
+{% endfor %}
+</div>
+{% endfor %}
+
+<footer class="foot">
+  <span>Issue {{ issue.number }}</span>
+  <span>{% for desk in desks %}{{ desk_titles[desk] }} {{ issue.counts()[desk] }}{% if not loop.last %} &middot; {% endif %}{% endfor %}</span>
+  <span>{{ issue.entries | length }} entries</span>
+  {% if issue.furniture.get('path') %}<span>{{ issue.furniture['path'] }}</span>{% endif %}
+</footer>
+
+</div>
+</body>
+</html>

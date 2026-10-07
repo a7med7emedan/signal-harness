@@ -1,0 +1,7 @@
+# Exact runtime and test versions used to produce examples/issue.sample.sha256.
+# Install with:  pip install -r requirements.lock
+Jinja2==3.1.6
+MarkupSafe==3.0.3
+pytest==9.1.1
+pytest-cov==7.0.0
+ruff==0.16.8

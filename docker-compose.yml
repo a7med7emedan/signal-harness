@@ -1,0 +1,15 @@
+# docker compose run --rm harness demo -o /work/demo.html
+# docker compose run --rm harness gate /work/issues/2026-10-07.html
+services:
+  harness:
+    build:
+      context: .
+      args:
+        BASE_IMAGE: ${BASE_IMAGE:-python:3.12-slim-bookworm}
+    image: signal-harness:1.0.0
+    working_dir: /work
+    volumes:
+      - ./build:/work
+    environment:
+      LC_ALL: C.UTF-8
+      TZ: UTC

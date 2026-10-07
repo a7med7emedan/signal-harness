@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "signal-harness: a reproducible harness for a daily briefing on AI in medicine and biology"
+type: software
+authors:
+  - family-names: Hemedan
+    given-names: Ahmed
+    email: ahmed.hemedan@lih.lu
+version: 1.0.0
+date-released: 2026-10-07
+license: Apache-2.0
+keywords:
+  - medical AI
+  - bioinformatics
+  - preprints
+  - reproducibility
