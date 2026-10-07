@@ -2,10 +2,11 @@
 
 ## Reporting
 
-Please report vulnerabilities privately by email to
-ahmed.hemedan@lih.lu rather than in a public issue. Include the
-version, a description and, if possible, a minimal reproduction. You should
-receive a reply within seven days.
+Please report vulnerabilities in a public issue at
+https://github.com/a7med7emedan/signal-harness/issues. Include the version, a
+description and, if possible, a minimal reproduction. You should receive a
+reply within seven days. If you would rather not post in public, email
+ahmed.hemedan@lih.lu instead.
 
 ## Scope
 

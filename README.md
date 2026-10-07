@@ -180,6 +180,12 @@ tests/          unit and end-to-end tests, recorded source payloads
 docs/           architecture figure
 ```
 
+## Contact
+
+Bug reports, questions and security reports go in the
+[issue tracker](https://github.com/a7med7emedan/signal-harness/issues). For
+anything else, email Ahmed Hemedan at ahmed.hemedan@lih.lu.
+
 ## Licence
 
 Apache License 2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE).
