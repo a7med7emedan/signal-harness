@@ -1,4 +1,4 @@
-name: ci
+name: tests
 
 on:
   push:
@@ -42,10 +42,3 @@ jobs:
           assert got == want, f"{got} != {want}"
           print("reproducible", got)
 
-  image:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - uses: actions/checkout@v4
-      - run: docker build -t signal-harness:ci .
-      - run: docker run --rm signal-harness:ci demo -o /tmp/demo.html

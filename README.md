@@ -1,5 +1,10 @@
 # signal-harness
 
+[![tests](https://github.com/a7med7emedan/signal-harness/actions/workflows/tests.yml/badge.svg)](https://github.com/a7med7emedan/signal-harness/actions/workflows/tests.yml)
+[![docker](https://github.com/a7med7emedan/signal-harness/actions/workflows/docker.yml/badge.svg)](https://github.com/a7med7emedan/signal-harness/actions/workflows/docker.yml)
+[![licence](https://img.shields.io/badge/licence-Apache--2.0-blue.svg)](LICENSE)
+[![python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
+
 A reproducible harness for a daily briefing on AI in medicine, biology and
 health policy. It collects candidates from preprint servers, scopes them to
 per-desk freshness windows, refuses anything already printed, validates the
@@ -37,6 +42,15 @@ If yours differs, something in your environment is not what the lock file
 says it should be. The test suite checks the same hash.
 
 ### With Docker
+
+A prebuilt image is published on every push to `main`:
+
+```bash
+docker pull ghcr.io/a7med7emedan/signal-harness:latest
+docker run --rm -v "$PWD/build:/work" ghcr.io/a7med7emedan/signal-harness:latest demo -o /work/demo.html
+```
+
+To build it yourself:
 
 ```bash
 docker build -t signal-harness .
